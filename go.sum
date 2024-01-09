@@ -1,4 +1,16 @@
+github.com/AchmadRifai/array-utils v1.0.1 h1:uTfSe839x3MPYi9ugcNas2nEx+jN7XwhNdYQn+NO2CU=
+github.com/AchmadRifai/array-utils v1.0.1/go.mod h1:Vc4BbKhoMFRXKg802UCRy0eIC3r1QiQYe4XsuK7gy6c=
+github.com/AchmadRifai/maps-utils v1.0.0 h1:w1MnAFPB5FPvhlprTCCQnTgYSjj9xJ7vRlnQUGD+BiA=
+github.com/AchmadRifai/maps-utils v1.0.0/go.mod h1:C8vFq9AiC79iiKepYw+thoOCTMHlfIKNs5iV7DaC2sU=
+github.com/AchmadRifai/sql-utils v1.0.1 h1:xWus0psMDsjZBFjzCDdtIUKQcbv+F1e4/PAMGMktrOA=
+github.com/AchmadRifai/sql-utils v1.0.1/go.mod h1:pf55hfTTU84C4ki9xpO9jv58yoqLDgounWYmj886yG8=
 github.com/davecgh/go-spew v1.1.0/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
+github.com/golang-collections/collections v0.0.0-20130729185459-604e922904d3 h1:zN2lZNZRflqFyxVaTIU61KNKQ9C0055u9CAfpmqUvo4=
+github.com/golang-collections/collections v0.0.0-20130729185459-604e922904d3/go.mod h1:nPpo7qLxd6XL3hWJG/O60sR8ZKfMCiIoNap5GvD12KU=
+github.com/gorilla/mux v1.8.1 h1:TuBL49tXwgrFYWhqrNgrUNEY92u81SPhu7sTdzQEiWY=
+github.com/gorilla/mux v1.8.1/go.mod h1:AKf9I4AEqPTmMytcMc0KkNouC66V3BtZ4qD5fmWSiMQ=
+github.com/mattn/go-sqlite3 v1.14.19 h1:fhGleo2h1p8tVChob4I9HpmVFIAkKGpiukdrgQbWfGI=
+github.com/mattn/go-sqlite3 v1.14.19/go.mod h1:2eHXhiwb8IkHr+BDWZGa96P6+rkvnG63S2DGjv9HUNg=
 github.com/pmezard/go-difflib v1.0.0/go.mod h1:iKH77koFhYxTK1pcRnkKkqfTogsbg7gZNVY4sRDYZ/4=
 github.com/replit/database-go v0.1.0 h1:DZ6E+R6/+S69ASr4EFp7G7gBVWqGBJFr9cHcENwHxc4=
 github.com/replit/database-go v0.1.0/go.mod h1:JSK3Z4IX5Lo7CWI3L5ozSguO6gGI9P30TNuL+mBLxgY=
