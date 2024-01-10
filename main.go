@@ -18,6 +18,7 @@ func (a *App) Initialize() {
 	a.Router = mux.NewRouter()
 	a.Router.Use(mux.CORSMethodMiddleware(a.Router))
 	routers.InitAccount(a.Router)
+	routers.InitAssetRouter(a.Router)
 }
 
 func (a *App) Run(addr string) {
