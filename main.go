@@ -14,7 +14,7 @@ type App struct {
 }
 
 func (a *App) Initialize() {
-	config.InitDb()
+	go config.InitDb()
 	a.Router = mux.NewRouter()
 	a.Router.Use(mux.CORSMethodMiddleware(a.Router))
 	routers.InitAccount(a.Router)
@@ -23,9 +23,11 @@ func (a *App) Initialize() {
 	routers.InitLiability(a.Router)
 	routers.InitOutcome(a.Router)
 	routers.InitType(a.Router)
+	routers.InitTransaction(a.Router)
 }
 
 func (a *App) Run(addr string) {
+	log.Println("Running", addr)
 	log.Fatal(http.ListenAndServe(addr, a.Router))
 }
 
