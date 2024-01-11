@@ -38,11 +38,11 @@ func (a *AccountRouter) Del(w http.ResponseWriter, r *http.Request) {
 		panic(fmt.Errorf("Name param not found"))
 	}
 	name := params["name"]
-	rows, _ := sqlutils.DbSelect(a.Db, "SELECT*FROM account WHERE name=?", name)
+	rows, _ := sqlutils.DbSelect(a.Db, "SELECT*FROM account WHERE name=? AND tipe=?", name, "Account")
 	if rows == nil {
 		panic(fmt.Errorf("Data %s not found", name))
 	}
-	_, err = a.Db.Exec("DELETE FROM account WHERE name=?", name)
+	_, err = a.Db.Exec("DELETE FROM account WHERE name=? AND tipe=?", name, "Account")
 	if err != nil {
 		panic(err)
 	}
@@ -73,7 +73,7 @@ func (a *AccountRouter) Add(w http.ResponseWriter, r *http.Request) {
 	if rows != nil {
 		panic(fmt.Errorf("Account %s is exists", body.Name))
 	}
-	_, err = a.Db.Exec("INSERT INTO account VALUES(?,?,?)", body.Name, body.Amount, body.Description)
+	_, err = a.Db.Exec("INSERT INTO account(name,amount,description,tipe) VALUES(?,?,?,?)", body.Name, body.Amount, body.Description, "Account")
 	if err != nil {
 		panic(err)
 	}
@@ -95,7 +95,7 @@ func (a *AccountRouter) Get(w http.ResponseWriter, r *http.Request) {
 		panic(fmt.Errorf("Name param not found"))
 	}
 	name := params["name"]
-	rows, _ := sqlutils.DbSelect(db, "SELECT*FROM account WHERE name=?", name)
+	rows, _ := sqlutils.DbSelect(db, "SELECT*FROM account WHERE name=? AND tipe=?", name, "Account")
 	if rows == nil {
 		panic(fmt.Errorf("Data %s not found", name))
 	}
@@ -119,7 +119,7 @@ func (a *AccountRouter) All(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		panic(err)
 	}
-	rows, _ := sqlutils.DbSelect(db, "SELECT*FROM account")
+	rows, _ := sqlutils.DbSelect(db, "SELECT*FROM account WHERE tipe=?", "Account")
 	if err := json.NewEncoder(w).Encode(&models.Accounts{
 		Datas: arrayutils.Map(rows, func(v map[string]string, index int) models.Account {
 			amount, err := strconv.ParseFloat(v["amount"], 64)

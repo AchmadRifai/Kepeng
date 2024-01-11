@@ -32,6 +32,15 @@ type Liabilities struct {
 	Datas []Liability `json:"datas"`
 }
 
+type Income struct {
+	Name    string `json:"name"`
+	Created string `json:"created"`
+}
+
+type Incomes struct {
+	Datas []Income `json:"datas"`
+}
+
 type Outcome struct {
 	Name    string `json:"name"`
 	Created string `json:"created"`
@@ -51,4 +60,13 @@ type Transaction struct {
 
 type Transactions struct {
 	Datas []Transaction `json:"datas"`
+}
+
+type TypeAccount struct {
+	Name        string `json:"name"`
+	Description string `json:"description"`
+}
+
+type TypeAccounts struct {
+	Datas []TypeAccount `json:"datas"`
 }

@@ -34,11 +34,11 @@ func (a *AssetRouter) Del(w http.ResponseWriter, r *http.Request) {
 		panic(fmt.Errorf("Key name not exists"))
 	}
 	name := params["name"]
-	rows, _ := sqlutils.DbSelect(a.Db, "SELECT*FROM asset WHERE name=?", name)
+	rows, _ := sqlutils.DbSelect(a.Db, "SELECT*FROM account WHERE name=?", name)
 	if rows == nil {
 		panic(fmt.Errorf("asset %s not found", name))
 	}
-	_, err = a.Db.Exec("DELETE FROM asset WHERE name=?", name)
+	_, err = a.Db.Exec("DELETE FROM account WHERE name=?", name)
 	if err != nil {
 		panic(err)
 	}
@@ -65,11 +65,11 @@ func (a *AssetRouter) Add(w http.ResponseWriter, r *http.Request) {
 	if err := json.NewDecoder(r.Body).Decode(&body); err != nil {
 		panic(err)
 	}
-	rows, _ := sqlutils.DbSelect(a.Db, "SELECT*FROM asset WHERE name=?", body.Name)
+	rows, _ := sqlutils.DbSelect(a.Db, "SELECT*FROM account WHERE name=?", body.Name)
 	if rows != nil {
 		panic(fmt.Errorf("Asset %s is exists", body.Name))
 	}
-	_, err = a.Db.Exec("INSERT INTO asset VALUES(?,?,?,?)", body.Name, body.Amount, body.Increase, body.Decrease)
+	_, err = a.Db.Exec("INSERT INTO account(name,amount,increase,decrease,tipe) VALUES(?,?,?,?,?)", body.Name, body.Amount, body.Increase, body.Decrease, "Asset")
 	if err != nil {
 		panic(err)
 	}
@@ -91,7 +91,7 @@ func (a *AssetRouter) Get(w http.ResponseWriter, r *http.Request) {
 		panic(fmt.Errorf("Key name not exists"))
 	}
 	name := params["name"]
-	rows, _ := sqlutils.DbSelect(a.Db, "SELECT*FROM asset WHERE name=?", name)
+	rows, _ := sqlutils.DbSelect(db, "SELECT*FROM account WHERE name=? AND tipe=?", name, "Asset")
 	if rows == nil {
 		panic(fmt.Errorf("asset %s not found", name))
 	}
@@ -110,7 +110,7 @@ func (a *AssetRouter) All(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		panic(err)
 	}
-	rows, _ := sqlutils.DbSelect(db, "SELECT*FROM asset")
+	rows, _ := sqlutils.DbSelect(db, "SELECT*FROM account WHERE tipe=?", "Asset")
 	if err := json.NewEncoder(w).Encode(&models.Assets{
 		Datas: arrayutils.Map(rows, rowToAsset),
 	}); err != nil {
