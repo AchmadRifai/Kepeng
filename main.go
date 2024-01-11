@@ -21,6 +21,7 @@ func (a *App) Initialize() {
 	routers.InitAssetRouter(a.Router)
 	routers.InitIncome(a.Router)
 	routers.InitLiability(a.Router)
+	routers.InitOutcome(a.Router)
 	routers.InitType(a.Router)
 }
 
